@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class TileManager : MonoBehaviour
 {
     public GameObject[] tileprefabs;
@@ -7,6 +8,7 @@ public class TileManager : MonoBehaviour
     public float tilelength = 30f;
     public int initialTileCount = 5;
     public Transform playertransform;
+    private List<GameObject> active = new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,17 +28,25 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playertransform.position.z>spawnz-(tilelength * initialTileCount))
+        if(playertransform.position.z-35>spawnz-(tilelength * initialTileCount))
         {
             SpawnTile(Random.Range(0, tileprefabs.Length));
+            DeleteTile();
         }
     }
     public void SpawnTile(int tileindex)
     {
         Vector3 spawnPos = transform.position + transform.forward * spawnz;
-        Instantiate(tileprefabs[tileindex], spawnPos, transform.rotation);
+        GameObject go=Instantiate(tileprefabs[tileindex], spawnPos, transform.rotation);
+        active.Add(go);
         spawnz += tilelength;
 
+
+    }
+    private void DeleteTile()
+    {
+        Destroy(active[0]);
+        active.RemoveAt(0);
     }
 
 

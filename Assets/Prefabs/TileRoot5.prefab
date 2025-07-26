@@ -88,6 +88,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 10.47
       objectReference: {fileID: 0}
+    - target: {fileID: 6447408632194683838, guid: 41f94022e2451e34ba74914e1b73a840, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6758269327494446200, guid: 41f94022e2451e34ba74914e1b73a840, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5133272242478147503}
     m_Modifications:
+    - target: {fileID: 2516516355546531287, guid: b1aafc6551fcd5d4698aac4876fa200d, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 3293281269902849846, guid: b1aafc6551fcd5d4698aac4876fa200d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.755068

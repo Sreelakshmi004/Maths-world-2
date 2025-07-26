@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -9,9 +10,11 @@ public class PlayerControl : MonoBehaviour
     public float lanedistance = 2.5f;
     public float jumpforce;
     public float gravity = -9.18f;
+    public Animator animator;
 
     void Start()
     {
+        Time.timeScale = 1f;
         controller = GetComponent<CharacterController>();
     }
 
@@ -20,22 +23,23 @@ public class PlayerControl : MonoBehaviour
         
         direction.z = forwardspeed;
         
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (SwipeControll.Swipeleft)
         {
             desiredlane--;
             if (desiredlane < 0) desiredlane = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (SwipeControll.Swiperight)
         {
             desiredlane++;
             if (desiredlane > 2) desiredlane = 2;
         }
         if(controller.isGrounded)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (SwipeControll.Swipeup)
             {
                 jump();
+                animator.SetTrigger("Rotate");
             }
         }
         else
@@ -49,6 +53,7 @@ public class PlayerControl : MonoBehaviour
         targetPosition += Vector3.right * laneOffset;
 
         transform.position = targetPosition;
+        controller.center = controller.center;
     }
     private void jump()
     {
@@ -57,5 +62,12 @@ public class PlayerControl : MonoBehaviour
     void FixedUpdate()
     {
         controller.Move(direction * Time.fixedDeltaTime);
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Obstacles"))
+        {
+            Game.gameover = true;
+        }
     }
 }
