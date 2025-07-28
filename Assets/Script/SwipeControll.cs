@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SwipeControll : MonoBehaviour
 {
-    public static bool Tap, Swipeleft, Swiperight, Swipeup, Swipedown;
+    public  static bool Tap, Swipeleft, Swiperight, Swipeup, Swipedown;
     private bool isdragging = false;
     private Vector2 Starttouch, Swipedelta;
 

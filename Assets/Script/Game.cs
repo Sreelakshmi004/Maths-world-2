@@ -19,4 +19,5 @@ public class Game : MonoBehaviour
             gameoverui.SetActive(true);
         }
     }
+  
 }
