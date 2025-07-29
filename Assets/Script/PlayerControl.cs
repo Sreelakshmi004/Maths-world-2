@@ -78,7 +78,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Obstacles"))
         {
-            Game.gameover = true;
+            FindFirstObjectByType<Game>().Overgame(); 
         }
 
         if (hit.gameObject.CompareTag("Collectable"))
@@ -91,6 +91,7 @@ public class PlayerControl : MonoBehaviour
                 int factor = val / 3;
 
                 ShowEquation(factor, 3, val);
+                Game.Instance.OnNumberCollected(val);
 
                 Destroy(hit.gameObject);
             }

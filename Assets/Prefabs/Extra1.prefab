@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle cap (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8980809490333620665, guid: c35c5fb464c4f2b4fb9de5454dc135a4, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -344,6 +348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle cap
       objectReference: {fileID: 0}
+    - target: {fileID: 8980809490333620665, guid: c35c5fb464c4f2b4fb9de5454dc135a4, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -446,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 8980809490333620665, guid: c35c5fb464c4f2b4fb9de5454dc135a4, type: 3}
       propertyPath: m_Name
       value: Obstacle cap (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980809490333620665, guid: c35c5fb464c4f2b4fb9de5454dc135a4, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
