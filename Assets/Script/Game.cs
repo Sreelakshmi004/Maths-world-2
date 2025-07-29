@@ -50,6 +50,7 @@ public class Game : MonoBehaviour
         if (timetext != null)
         {
             timetext.text = "Time:" + sec.ToString()+"s";
+
         }
        
     }
@@ -75,6 +76,7 @@ public class Game : MonoBehaviour
                 Time.timeScale = 0f;
                 nextLevelUI.SetActive(true);
                 equationui.SetActive(false);
+                timetext.enabled = false;
             }
             else
             {
