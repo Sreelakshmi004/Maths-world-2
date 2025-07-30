@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
     private bool isgamerunning = false;
     private float timer = 60f;
     private List<Number> activeNumberObjects = new List<Number>();
+   
+    public AudioSource a3;
 
     private void Awake()
     {
@@ -25,6 +27,11 @@ public class Game : MonoBehaviour
     void Start()
     {
         isgamerunning = true;
+        if (a3 != null)
+        {
+            a3.Play();
+            a3.loop = true;
+        }
        
     }
 
@@ -32,6 +39,7 @@ public class Game : MonoBehaviour
     {
         if (isgamerunning)
         {
+           
             timetext.enabled = true;
             timer -= Time.deltaTime;
             Time.timeScale = 1f;
@@ -103,6 +111,7 @@ public class Game : MonoBehaviour
         gameoverui.SetActive(true);
         equationui.SetActive(false);
         timetext.enabled = false;
+        a3.Stop();
     }
 
 }

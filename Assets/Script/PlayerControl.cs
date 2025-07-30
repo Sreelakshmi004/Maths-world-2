@@ -13,7 +13,9 @@ public class PlayerControl : MonoBehaviour
     public float jumpForce;
     public float gravity = -9.81f;
     public Animator animator;
-   // public AudioSource a1;
+   public AudioSource a1;
+    public AudioSource a2;
+      
 
     public TextMeshProUGUI equationText; // Reference to UI Text to show equation
 
@@ -26,7 +28,10 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
-        
+        if (forwardSpeed < maxSpeed)
+        {
+            forwardSpeed += 0.1f * Time.deltaTime;
+        }
 
         direction.z = forwardSpeed;
 
@@ -78,7 +83,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Obstacles"))
         {
-            FindFirstObjectByType<Game>().Overgame(); 
+            FindFirstObjectByType<Game>().Overgame();
+            a2.Play();
+          
         }
 
         if (hit.gameObject.CompareTag("Collectable"))
@@ -86,7 +93,7 @@ public class PlayerControl : MonoBehaviour
             Number numScript = hit.gameObject.GetComponent<Number>();
             if (numScript != null)
             {
-                //a1.Play(); // Play collect sound
+                a1.Play(); // Play collect sound
                 int val = numScript.GetValue();
                 int factor = val / 3;
 

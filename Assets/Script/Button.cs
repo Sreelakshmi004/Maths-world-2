@@ -10,4 +10,8 @@ public class Button : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Home()
+    {
+        SceneManager.LoadScene("Homepage");
+    }
 }
