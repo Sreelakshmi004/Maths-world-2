@@ -14,7 +14,6 @@ public class Game : MonoBehaviour
     private bool isgamerunning = false;
     private float timer = 60f;
     private List<Number> activeNumberObjects = new List<Number>();
-   
     public AudioSource a3;
 
     private void Awake()
