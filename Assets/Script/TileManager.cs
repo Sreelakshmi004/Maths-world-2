@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class TileManager : MonoBehaviour
@@ -43,43 +42,49 @@ public class TileManager : MonoBehaviour
         activeTiles.Add(tile);
         spawnZ += tileLength;
 
-        SpawnNumbersAtPoints(tile);
+        SpawnNumberInTile(tile);
     }
 
-    private void SpawnNumbersAtPoints(GameObject tile)
+    private void SpawnNumberInTile(GameObject tile)
     {
+        if (multipleIndex >= multiplesOfThree.Count) return;
+
+        Transform spawnPoint = null;
+
+        // Find first available spawn point
         foreach (Transform child in tile.transform)
         {
             if (child.name.ToLower().Contains("spawnpoint"))
             {
-                if (multipleIndex >= multiplesOfThree.Count)
-                    return;
-
-                GameObject number = Instantiate(numberPrefab, child.position, Quaternion.identity, tile.transform);
-
-                // Assign number text (TextMesh or TextMeshPro)
-                int numberValue = multiplesOfThree[multipleIndex++];
-                var text = number.GetComponentInChildren<TextMesh>();
-                if (text != null)
-                {
-                    text.text = numberValue.ToString();
-                }
-                else
-                {
-                    var tmp = number.GetComponentInChildren<TMPro.TextMeshPro>();
-                    if (tmp != null)
-                        tmp.text = numberValue.ToString();
-                }
-
-                Number nv = number.GetComponent<Number>();
-                if (nv == null)
-                {
-                    nv = number.AddComponent<Number>(); // Add component if not already present
-                }
-                nv.number = numberValue;
-
-                number.name = "Number_" + numberValue;
+                spawnPoint = child;
+                break;
             }
+        }
+
+        if (spawnPoint != null)
+        {
+            int numberValue = multiplesOfThree[multipleIndex];
+
+            GameObject number = Instantiate(numberPrefab, spawnPoint.position, Quaternion.identity, tile.transform);
+            number.name = "Number_" + numberValue;
+
+            // Set number text (TextMesh or TMP)
+            var text = number.GetComponentInChildren<TextMesh>();
+            if (text != null)
+                text.text = numberValue.ToString();
+            else
+            {
+                var tmp = number.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                if (tmp != null)
+                    tmp.text = numberValue.ToString();
+            }
+
+            // Assign value to Number script
+            Number nv = number.GetComponent<Number>();
+            if (nv == null)
+                nv = number.AddComponent<Number>();
+
+            nv.number = numberValue;
         }
     }
 
@@ -87,5 +92,11 @@ public class TileManager : MonoBehaviour
     {
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);
+    }
+
+    // Call this from Number.cs when a correct number is collected
+    public void OnMultipleCollected()
+    {
+        multipleIndex++;
     }
 }

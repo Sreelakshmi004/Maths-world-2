@@ -35,7 +35,17 @@ public class Number : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Game.Instance.OnNumberCollected(number);
+            if (Game.Instance != null)
+            {
+                Game.Instance.OnNumberCollected(number);
+
+                // Only advance multiple if correct
+                if (number == Game.Instance.GetCurrentTarget())
+                {
+                    FindFirstObjectByType<TileManager>().OnMultipleCollected();
+                }
+            }
+
             Destroy(gameObject);
         }
     }

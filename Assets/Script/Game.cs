@@ -15,7 +15,8 @@ public class Game : MonoBehaviour
     private float timer = 60f;
     private List<Number> activeNumberObjects = new List<Number>();
     public AudioSource a3;
-
+    public PlayerControl control;
+    public TileManager tile;
     private void Awake()
     {
         Instance = this;
@@ -44,7 +45,7 @@ public class Game : MonoBehaviour
             Time.timeScale = 1f;
             
             UpdateTime();
-            if(timer<=0 && currentIndex <targetMultiples.Length)
+            if(timer<=0 && currentIndex <targetMultiples.Length)//this line check if both timer is 0 and also not all multiples are collected 
             {
                 timer = 0f;
                 Overgame();
@@ -105,6 +106,8 @@ public class Game : MonoBehaviour
     }
     public void Overgame()
     {
+        control.enabled = false;
+        tile.enabled = false;
         isgamerunning = false;
         Time.timeScale = 0f;
         gameoverui.SetActive(true);
